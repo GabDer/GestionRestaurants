@@ -1,0 +1,69 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8">
+    <title>TP4 PIW</title>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>  
+    <SCRIPT LANGUAGE="JavaScript">
+      var maintenant=new Date();
+      var jour=maintenant.getDate();
+      var mois=maintenant.getMonth()+1;
+      var an=maintenant.getFullYear();
+    </SCRIPT>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/stylePerso.css' %}">
+  </head>
+
+  <body>
+    
+      {% if accueil %}
+        {% include "filtrage.html" %}
+      {% else %}
+        {% include "navbar.html" %}
+      {% endif %}
+
+    <div class="container mb-5 mt-5" id="titre">
+      {% block titre %} 
+
+      {% endblock %}
+    </div>
+
+    <div class="container">
+      {% block principal %}
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{message}}</div>
+          {% endfor %}
+        {% endif %}
+      {% endblock %}
+    </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">{% block confirmationFormulaire %} {% endblock %}</div>
+        <div class="col-4"></div>
+      </div>
+    </div>
+
+    <div class="container mb-5 mt-5" id="titre">
+      {% block titreRepresentation %} {% endblock %}
+    </div>
+    
+    <div class="container mb-5 mt-5" id="titre">
+      {% block titre2 %} 
+
+      {% endblock %}
+    </div>
+
+
+    <div class="container">
+      {% block principal2 %} {% endblock %}
+    </div>
+    
+    <div id="footer">
+      {% include "footer.html" %}
+    </div>
+  </body>
+</html>

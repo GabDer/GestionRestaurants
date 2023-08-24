@@ -1,0 +1,13 @@
+{% extends 'maitre.html' %}
+{% load crispy_forms_tags %}
+
+{% block principal %}
+    <h4>S'enregistrer</h4>
+    <form method="post">
+        <table>
+        {% csrf_token %}
+        {{ form|crispy }}
+        </table>
+        <input type="submit" value="S'enregistrer">
+    </form>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'maitre.html' %}
+
+{% block titre %}
+    <p>Supprimer un restaurant</p>
+{% endblock %}
+
+{% block confirmationFormulaire %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+            <p>Voulez-vous supprimer le restaurant "{{ leRestaurant.nom }}" ?</p>
+            <p><input type="submit" value="Oui"></p>
+        </div>
+    </form>
+    <p class="text-center"><a href="{% url 'listeRestaurants' %}">Annuler et retourner à la liste des restaurants</a></p>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'maitre.html' %}
+
+{% block titre %}
+    <p>Supprimer un commentaire</p>
+{% endblock %}
+
+{% block confirmationFormulaire %}
+    <form method="POST">
+        {% csrf_token %}
+        <div class="text-center">
+            <p>Voulez-vous supprimer le commentaire "{{ leCommentaire.titre }}" ?</p>
+            <p><input type="submit" value="Oui"></p>
+        </div>
+    </form>
+    <p class="text-center"><a href="{% url 'detailRestaurant' leCommentaire.restaurant.id %}">Annuler et retourner au restaurant</a></p>
+{% endblock %}

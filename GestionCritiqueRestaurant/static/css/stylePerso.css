@@ -1,0 +1,50 @@
+#Accueil{
+    font-size: large;
+    font-weight: bold;
+}
+#entete{
+    background: url('../assets/Cinema.png') 100% 0 no-repeat;
+    margin-left: 2%;
+    margin-top: 2%;
+    height: 150px;
+}
+#nomCinema{
+    font-weight: bold;
+    font-size:xx-large;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+#footer{
+    margin: 2%;
+}
+#titre{
+    font-size: 32px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
+}
+#lienFilm{
+    color: black;
+}
+#titreFilm{
+    color: gray;
+}
+#detailRestaurant{
+    text-decoration:none;
+    color: black;
+}
+
+#scrollDiv{
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 800px;
+}
+
+.nav-perso{
+    --bs-nav-link-padding-x: 1rem;
+    --bs-nav-link-padding-y: 0.5rem;
+}
+
+.nav-item-perso{
+    display: block;
+    text-decoration: none;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+    padding: var(--bs-nav-link-padding-y) var(--bs-nav-link-padding-x);
+}

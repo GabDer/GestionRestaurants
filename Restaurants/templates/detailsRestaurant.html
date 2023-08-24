@@ -1,0 +1,66 @@
+{% extends 'maitre.html' %}
+{% load static %}
+
+{% block titre %}
+    <p>Détails du restaurant</p>
+{% endblock %}
+
+{% block principal %}
+<div class="row mb-5">
+    <div class="col-md-6">
+        <img class="card-img-top" src="{% get_media_prefix %}/{{leRestaurant.image}} ">
+    </div>
+    <div class="col-md-6">
+        <div class="card">
+            <h3 class="card-header text-center">Description</h3>
+            <div class="card-body"><h5>{{ leRestaurant.description }}</h5></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block titre2 %}
+    <p>Les commentaires</p>
+{% endblock %}
+
+{% block principal2 %}
+    <div class="row text-center">
+        {{ commentairesNotes }}
+        {% for c in leRestaurant.commentaire_set.all %}
+        <div class="col-md-4 mt-4">
+            <div class="card">
+                <h5 class="card-header">{{ c.titre }} </h5>
+                <div class="card-body">
+                    <h5 class="card-title">{{ c.userName.username }}</h5>
+                    <p class="card-text">{{ c.texte }}</p>
+                    <ul class="list-unstyled d-flex justify-content-center mb-0">
+                        {% for i in "x"|ljust:c.note %}
+                            <li>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+                                </svg>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <div class="card-footer text-muted">
+                    {{ c.date }}
+                </div>
+                {% if user.username == 'admin' %}
+                <div class="card-footer text-muted">
+                    <a class="btn btn-danger" href="{% url 'suppressionCommentaire' c.id  %}" role="button">Supprimer</a>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        {% endfor %}
+        {% if user.is_authenticated %}
+          <div class="card mb-5" style="width: 20rem;"><a id="detailFilm" href="{% url 'ajoutCommentaire' leRestaurant.id %}">
+            <div class="card-body">
+              <h5 class="card-title mb-5 text-center">Ajouter un commentaire</h5>
+              <img src="{% get_media_prefix %}/ajoutButton.png" class="card-img-bottom mt-5">
+            </div>
+          </div>
+        {% endif %}
+    </div>
+{% endblock %}
